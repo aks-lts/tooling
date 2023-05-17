@@ -1,0 +1,26 @@
+# ref: https://github.com/marketplace/actions/git-sync-action
+on:
+  schedule: 
+    # sync every hour on the half hour
+    - cron: '30 * * * *'
+jobs:
+  git-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git-sync-branches
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "kubernetes/kubernetes"
+          destination_repo: "git@github.com:aks-lts/kubernetes.git"
+          source_branch: "refs/remotes/source/*"
+          destination_branch: "refs/heads/*"
+          destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+      - name: git-sync-tags
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "kubernetes/kubernetes"
+          destination_repo: "git@github.com:aks-lts/kubernetes.git"
+          source_branch: "refs/tags/*"
+          destination_branch: "refs/tags/*"
+          destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY` 
+     
