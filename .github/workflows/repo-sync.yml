@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: git-sync-branches
-        uses: jeremyrickard/git-sync@main
+        uses: aks-lts/git-sync@main
         with:
           source_repo: "kubernetes/kubernetes"
           destination_repo: "git@github.com:aks-lts/kubernetes.git"
