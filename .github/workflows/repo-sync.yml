@@ -1,5 +1,6 @@
 # ref: https://github.com/marketplace/actions/git-sync-action
 on:
+  workflow_dispatch: 
   schedule: 
     # sync every hour on the half hour
     - cron: '30 * * * *'
