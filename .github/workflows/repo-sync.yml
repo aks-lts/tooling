@@ -55,6 +55,14 @@ jobs:
             source_branch: "release-1.31"
             destination_branch: "release-1.31"
             destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
+      - name: git-sync-release-1.32
+        uses: aks-lts/git-sync@main
+        with:
+            source_repo: "kubernetes/kubernetes"
+            destination_repo: "git@github.com:aks-lts/kubernetes.git"
+            source_branch: "release-1.32"
+            destination_branch: "release-1.32"
+            destination_ssh_private_key: ${{ secrets.DESTINATION_SSH_PRIVATE_KEY }} # optional, will override `SSH_PRIVATE_KEY`
       - name: git-sync-tags #SHOULD WE RESTRICT TAGS? 
         uses: aks-lts/git-sync@main
         with:
